@@ -12,18 +12,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderProducer {
-    private static final Logger logger = LoggerFactory.getLogger(OrderProducer.class);
-    private final NewTopic topic;
-    private final KafkaTemplate<String, OrderEvent> kafkaTemplate;
 
-    public OrderProducer(NewTopic topic, KafkaTemplate<String, OrderEvent> kafkaTemplate) {
-        this.topic = topic;
-        this.kafkaTemplate = kafkaTemplate;
-    }
 
     public void sendMessage(OrderEvent event) {
-        logger.info(String.format("Order event send -> %s", event.toString()));
-        Message<OrderEvent> message = MessageBuilder.withPayload(event).setHeader(KafkaHeaders.TOPIC, topic.name()).build();
-        kafkaTemplate.send(message);
     }
 }

@@ -13,19 +13,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 public class OrderController {
-    private final OrderProducer orderProducer;
-
-    public OrderController(OrderProducer orderProducer) {
-        this.orderProducer = orderProducer;
-    }
-
     @PostMapping("/orders")
     public String placeOrder(@RequestBody Order order) {
-          OrderEvent orderEvent = new OrderEvent();
-          orderEvent.setStatus("PENDING");
-          orderEvent.setMessage("order status is in pending state");
-          orderEvent.setOrder(order);
-          orderProducer.sendMessage(orderEvent);
-          return "Order placed successfully...";
+       return null;
     }
 }
